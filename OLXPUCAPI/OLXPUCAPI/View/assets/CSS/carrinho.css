@@ -142,9 +142,13 @@ body {
 }
 
 .card-body img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center center;
     border-radius: 8px;
     transition: transform 0.3s ease;
-    object-fit: cover;
+    display: block;
 }
 
 .card-body img:hover {
