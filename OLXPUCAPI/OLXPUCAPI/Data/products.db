@@ -31,5 +31,16 @@
     "Category": "string",
     "Condition": "string",
     "Location": "string"
+  },
+  {
+    "Id": "727e1d84-94e6-4d82-9c4b-926f38a91a60",
+    "Title": "Goku Black",
+    "Description": "Goku Black Super Rose",
+    "Price": 50,
+    "ImageUrl": "assets/img/no-image.png",
+    "OwnerId": "7abaea51-f9c9-42c7-a355-a767d7bf85c8",
+    "Category": "Pe\u00E7a de Roupas",
+    "Condition": "Semi-novo",
+    "Location": "BEAGA"
   }
 ]

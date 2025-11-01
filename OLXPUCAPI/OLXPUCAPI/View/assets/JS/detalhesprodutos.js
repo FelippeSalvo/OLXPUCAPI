@@ -44,6 +44,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (condicao) condicao.textContent = produto.condition || "Não especificado";
         if (localizacao) localizacao.textContent = produto.location || "Não especificado";
         
+        // Carrega informações do vendedor
+        if (produto.ownerId) {
+            await carregarInformacoesVendedor(produto.ownerId);
+        }
+        
     } catch (err) {
         console.error("Erro ao carregar produto:", err);
         const container = document.getElementById("detalhes-produto");
@@ -52,6 +57,78 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 });
+
+// Função para carregar informações do vendedor
+async function carregarInformacoesVendedor(ownerId) {
+    try {
+        const userRes = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.USERS}/${ownerId}`);
+        
+        if (!userRes.ok) {
+            console.warn("Não foi possível carregar informações do vendedor");
+            return;
+        }
+        
+        const vendedor = await userRes.json();
+        
+        // Preenche informações do vendedor
+        const nomeVendedor = document.getElementById("nomeVendedor");
+        const fotoVendedor = document.getElementById("fotoVendedor");
+        const membroDesde = document.getElementById("membroDesde");
+        const avaliacao = document.getElementById("avaliacao");
+        const curso = document.getElementById("curso");
+        const telefone = document.getElementById("telefone");
+        
+        if (nomeVendedor) nomeVendedor.textContent = vendedor.name || "Vendedor";
+        if (fotoVendedor) {
+            // Se não houver foto, usa uma imagem padrão ou inicial do nome
+            fotoVendedor.src = vendedor.photoUrl || 'assets/img/no-image.png';
+            fotoVendedor.alt = vendedor.name || "Foto do Vendedor";
+        }
+        
+        // Membro desde - usa data de criação do usuário se disponível, senão usa data atual
+        if (membroDesde) {
+            const dataCriacao = vendedor.createdAt || vendedor.createdDate || new Date().toISOString();
+            try {
+                const data = new Date(dataCriacao);
+                const mes = data.toLocaleString('pt-BR', { month: 'long' });
+                const ano = data.getFullYear();
+                membroDesde.textContent = `${mes} de ${ano}`;
+            } catch {
+                membroDesde.textContent = "Data não disponível";
+            }
+        }
+        
+        // Avaliação - por enquanto usa um valor padrão ou busca avaliações do vendedor
+        if (avaliacao) {
+            // Aqui você pode buscar avaliações do vendedor quando implementar o sistema de avaliações
+            // Por enquanto, exibe estrelas padrão
+            const notaMedia = vendedor.averageRating || 4.5; // Valor padrão
+            const estrelas = Math.round(notaMedia);
+            let htmlAvaliacao = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= estrelas) {
+                    htmlAvaliacao += '<i class="bi bi-star-fill"></i>';
+                } else {
+                    htmlAvaliacao += '<i class="bi bi-star"></i>';
+                }
+            }
+            avaliacao.innerHTML = htmlAvaliacao + ` <small>${notaMedia.toFixed(1)}</small>`;
+        }
+        
+        // Curso - busca do campo course ou usa valor padrão
+        if (curso) {
+            curso.textContent = vendedor.course || vendedor.curso || "Não informado";
+        }
+        
+        // Telefone - busca do campo phone ou telephone
+        if (telefone) {
+            telefone.textContent = vendedor.phone || vendedor.telephone || vendedor.contact || "Não informado";
+        }
+        
+    } catch (err) {
+        console.error("Erro ao carregar informações do vendedor:", err);
+    }
+}
 
 async function adicionarAoCarrinho(productId) {
     const userStr = localStorage.getItem("usuarioLogado");
