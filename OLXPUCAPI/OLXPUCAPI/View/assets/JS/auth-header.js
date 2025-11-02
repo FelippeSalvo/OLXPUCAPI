@@ -38,6 +38,19 @@ document.addEventListener("DOMContentLoaded", () => {
             userInfo.appendChild(logoutBtn);
             
             authButtons.appendChild(userInfo);
+
+            // Adiciona links de Perfil e Admin no navbar
+            const linkPerfil = document.getElementById("linkPerfil");
+            const linkAdmin = document.getElementById("linkAdmin");
+            const userRole = user.role || user.Role || "";
+
+            if (linkPerfil) {
+                linkPerfil.style.display = "block";
+            }
+
+            if (linkAdmin && (userRole === "Admin" || userRole === "admin")) {
+                linkAdmin.style.display = "block";
+            }
         } catch (err) {
             console.error("Erro ao carregar usuário:", err);
         }

@@ -14,7 +14,6 @@
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
 
 <body>
@@ -22,60 +21,56 @@
     <a href="index.html" style="text-decoration: none; color: inherit;"><div class="logo">OLX PUC</div></a>
     <input type="text" id="campoBusca" placeholder="Buscar anúncio..." class="search"/>
     <div class="auth-buttons">
-      <a href="Login.html" class="btn login">Login | Logout</a>
+      <a href= "Login.html" class="btn login">Login | Logout</a>
       <a href="cadastro_usuario.html" class="btn subscribe">Cadastrar</a>
     </div>
   </header>
-
+  
   <nav class="navbar">
     <a href="index.html">Home</a>
     <a href="meusanuncios.html">Meus Anúncios</a>
     <a href="notificacoes.html">Notificações</a>
+    <a href="perfil.html" id="linkPerfil" style="display: none;">Perfil</a>
+    <a href="admin.html" id="linkAdmin" style="display: none;">Admin</a>
     <div class="icons">
       <a href="carrinho.html"><button><i class="fas fa-shopping-cart"></i> Carrinho</button></a>
     </div>
   </nav>
 
-  <section class="py-5">
-    <div class="container">
-      <div class="row justify-content-center">
-        <!-- Vou carregar pelo JS -->
-        <div class="col-lg-8">
-          <div class="card mb-4">
-            <div class="card-body">
-              <!-- O conteúdo do carrinho pelo JS -->
-            </div>
+  <div class="container py-4 mt-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body" id="carrinho-container">
+            <!-- O conteúdo do carrinho pelo JS -->
           </div>
         </div>
+      </div>
 
-        <!-- Resumo do Pedido -->
-        <div class="col-lg-4">
-          <div class="card sumario-card mb-4">
-            <div class="card-header py-3">
-              <h5 class="mb-0 fw-bold"><i class="fas fa-receipt me-2"></i>Resumo do Pedido</h5>
+      <div class="col-lg-4">
+        <div class="card sumario-card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0 fw-bold"><i class="fas fa-receipt me-2"></i>Resumo do Pedido</h5>
+          </div>
+          <div class="card-body p-0">
+            <ul class="list-group sumario-lista">
+              <!-- Resumo pelo JS -->
+            </ul>
+
+            <div class="p-3">
+              <button class="btn btn-success w-100 py-3 fw-bold mb-3">
+                <i class="fas fa-comments me-2"></i>Chat com o Vendedor
+              </button>
             </div>
-            <div class="card-body p-0">
-              <ul class="list-group sumario-lista">
-                <!-- Resumo pelo JS -->
-              </ul>
 
-              <!-- Chat com o Vendedor -->
-              <div class="p-3">
-                <button class="btn btn-success w-100 py-3 fw-bold mb-3">
-                  <i class="fas fa-comments me-2"></i>Chat com o Vendedor
-                </button>
-              </div>
-
-              <!-- Informações do vendedor -->
-              <div class="info-vendedor p-4">
-                <!-- carregar com JS -->
-              </div>
+            <div class="info-vendedor p-4">
+              <!-- carregar com JS -->
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <footer>
     <div class="container-fluid">

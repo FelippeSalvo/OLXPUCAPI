@@ -85,7 +85,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <h3>${titulo}</h3>
                     <p>${descricao}</p>
                     <div class="price">R$ ${preco}</div>
-                    <button class="btn-card" onclick="window.location.href='detalhes.html?id=${produtoId}'">Ver detalhes</button>
+                    <div class="d-flex gap-2 mt-2" style="flex-wrap: wrap;">
+                        <button class="btn-card" onclick="window.location.href='detalhes.html?id=${produtoId}'">Ver detalhes</button>
+                        <button class="btn-edit" onclick="editarProduto('${produtoId}')" style="background-color: #189f8f; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer;">
+                            <i class="fas fa-edit me-1"></i>Editar
+                        </button>
+                        <button class="btn-delete" onclick="deletarProduto('${produtoId}', '${titulo}')" style="background-color: #dc3545; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer;">
+                            <i class="fas fa-trash me-1"></i>Deletar
+                        </button>
+                    </div>
                 </div>
             `;
 
@@ -98,10 +106,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Adiciona botão para cadastrar novo anúncio
         const btnNovoAnuncio = document.createElement("div");
-        btnNovoAnuncio.className = "text-center mt-5 mb-4";
+        btnNovoAnuncio.className = "text-center";
         btnNovoAnuncio.innerHTML = `
-            <a href="cadastro.html" class="btn btn-success btn-lg">
-                <i class="bi bi-plus-circle me-2"></i> Cadastrar Novo Anúncio
+            <a href="cadastro.html" class="btn btn-success">
+                <i class="fas fa-plus-circle me-2"></i> Cadastrar Novo Anúncio
             </a>
         `;
         container.appendChild(btnNovoAnuncio);
@@ -127,5 +135,33 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+}
+
+// Função para deletar produto
+async function deletarProduto(productId, titulo) {
+    if (!confirm(`Tem certeza que deseja deletar o produto "${titulo}"? Esta ação não pode ser desfeita.`)) {
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PRODUCTS}/${productId}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao deletar produto');
+        }
+
+        alert('✅ Produto deletado com sucesso!');
+        location.reload();
+    } catch (err) {
+        console.error('Erro ao deletar produto:', err);
+        alert(`Erro ao deletar produto: ${err.message}`);
+    }
+}
+
+// Função para editar produto
+function editarProduto(productId) {
+    window.location.href = `editar-produto.html?id=${productId}`;
 }
 

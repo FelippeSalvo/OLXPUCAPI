@@ -5,11 +5,61 @@ body {
     padding: 0;
 }
 
-section.py-5 {
-    margin-top: 30px;
+.container.py-4 {
+    margin-top: 20px;
     margin-bottom: 50px;
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
+}
+
+/* Mensagem de carrinho vazio */
+.carrinho-vazio {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrinho-vazio i {
+    font-size: 5rem;
+    color: #189f8f;
+    margin-bottom: 20px;
+    opacity: 0.6;
+}
+
+.carrinho-vazio h3 {
+    color: #189f8f;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.carrinho-vazio p {
+    color: #6c757d;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.carrinho-vazio .btn {
+    background-color: #189f8f;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    border: none;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.carrinho-vazio .btn:hover {
+    background-color: #11776e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(24, 159, 143, 0.3);
+    color: white;
 }
 
 .card {
@@ -29,6 +79,51 @@ section.py-5 {
     background-color: #f8f9fa;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Cards do carrinho */
+#carrinho-container .card {
+    width: 100%;
+    margin-bottom: 0;
+    background-color: white;
+    padding: 20px !important;
+}
+
+#carrinho-container .card .d-flex {
+    align-items: center;
+    width: 100%;
+}
+
+#carrinho-container .card .d-flex > div:first-child {
+    flex: 1;
+    min-width: 0;
+}
+
+#carrinho-container .card .d-flex > div:first-child > div {
+    min-width: 0;
+}
+
+#carrinho-container .card h5 {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    word-wrap: break-word;
+}
+
+#carrinho-container .card p {
+    margin-bottom: 5px;
+    color: #6c757d;
+    font-size: 0.95rem;
+}
+
+#carrinho-container .card .btn-danger {
+    flex-shrink: 0;
+    margin-left: 15px;
+    white-space: nowrap;
 }
 
 /* Moldura para imagens do carrinho */
