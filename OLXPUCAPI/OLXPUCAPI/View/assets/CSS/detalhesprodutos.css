@@ -350,7 +350,7 @@ strong {
 }
 
 footer {
-  background: rgba(255, 255, 255, 0.98);
+  background: rgba(20, 20, 20, 0.98);
   color: #333;
   text-align: center;
   padding: 50px 5%;
@@ -369,7 +369,7 @@ footer p {
   font-size: 0.9rem;
   margin: 10px auto;
   max-width: 800px;
-  color: #666;
+  color: #ccc;
 }
 
 .social {
@@ -379,7 +379,7 @@ footer p {
 .social i {
   margin: 0 10px;
   font-size: 1.5rem;
-  color: #555;
+  color: #999;
   cursor: pointer;
   transition: color 0.3s ease;
 }
