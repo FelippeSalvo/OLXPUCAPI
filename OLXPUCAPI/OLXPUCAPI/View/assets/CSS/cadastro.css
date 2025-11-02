@@ -361,3 +361,72 @@ textarea.form-control {
     padding: 10px;
   }
 }
+
+/* Estilos para preview de imagens */
+#previewImagens {
+  margin-top: 1rem;
+}
+
+#previewImagens .img-thumbnail {
+  border: 2px solid var(--border-color) !important;
+  border-radius: 8px !important;
+  object-fit: contain !important;
+  background-color: var(--light-gray) !important;
+}
+
+#previewImagens img {
+  transition: transform 0.3s ease !important;
+}
+
+#previewImagens img:hover {
+  transform: scale(1.05) !important;
+}
+
+/* Estilos para inputs de URL adicionais */
+#imagensContainer .input-group {
+  margin-bottom: 0.5rem !important;
+}
+
+#imagensContainer .input-group .form-control {
+  border-radius: 4px 0 0 4px !important;
+}
+
+#imagensContainer .input-group .btn {
+  border-radius: 0 4px 4px 0 !important;
+}
+
+/* Estilos para botão de adicionar imagem */
+#btnAdicionarImagem {
+  background-color: transparent !important;
+  border-color: var(--puc-main) !important;
+  color: var(--puc-main) !important;
+}
+
+#btnAdicionarImagem:hover {
+  background-color: var(--puc-main) !important;
+  color: var(--white) !important;
+}
+
+/* Estilos para preview de imagens adicionais */
+#previewImagens .d-flex.flex-wrap {
+  gap: 1rem !important;
+}
+
+#previewImagens .border.rounded {
+  padding: 0.5rem !important;
+  background-color: var(--white) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  transition: box-shadow 0.3s ease !important;
+}
+
+#previewImagens .border.rounded:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Mensagem de ajuda para URLs */
+.text-muted {
+  font-size: 0.875rem !important;
+  color: #6c757d !important;
+  margin-top: 0.25rem !important;
+  display: block !important;
+}

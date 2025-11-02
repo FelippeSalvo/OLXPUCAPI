@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OLXPUCAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7024676413213ed51ea6a387573abc07d7bba51b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b13eb7481101d7a3a03acf35abac9d06cd775fd6")]
 [assembly: System.Reflection.AssemblyProductAttribute("OLXPUCAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OLXPUCAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

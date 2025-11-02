@@ -278,6 +278,21 @@ function inicializarFiltros(produtos) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+    // Verificação de login para botão "Anunciar agora"
+    const btnAnunciar = document.getElementById("btnAnunciar");
+    if (btnAnunciar) {
+        btnAnunciar.addEventListener("click", (e) => {
+            e.preventDefault();
+            const userStr = localStorage.getItem("usuarioLogado");
+            if (!userStr) {
+                alert("⚠️ Você precisa estar logado para anunciar produtos!");
+                window.location.href = "Login.html";
+                return;
+            }
+            window.location.href = "cadastro.html";
+        });
+    }
+
     // Inicializa o carrossel primeiro
     await initializeCarousel();
 

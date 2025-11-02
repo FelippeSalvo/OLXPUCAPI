@@ -58,12 +58,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 const card = document.createElement("div");
                 card.classList.add("card", "mb-3", "p-3");
+                const imageUrl = produto.imageUrl || produto.ImageUrl || 'assets/img/no-image.png';
+                const titulo = produto.title || produto.Title || "Produto";
+                
                 card.innerHTML = `
                     <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h5>${produto.title || "Produto"}</h5>
-                            <p>Quantidade: ${item.quantity || 1}</p>
-                            <p>R$ ${subtotal.toFixed(2)}</p>
+                        <div class="d-flex gap-3 align-items-center">
+                            <img src="${imageUrl}" 
+                                 alt="${titulo}" 
+                                 class="carrinho-img"
+                                 onerror="this.src='assets/img/no-image.png'">
+                            <div>
+                                <h5>${titulo}</h5>
+                                <p>Quantidade: ${item.quantity || 1}</p>
+                                <p>R$ ${subtotal.toFixed(2)}</p>
+                            </div>
                         </div>
                         <button class="btn btn-danger" onclick="removerItem('${user.id}', '${item.productId}')">Remover</button>
                     </div>

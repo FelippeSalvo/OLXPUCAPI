@@ -16,8 +16,13 @@ main {
 
 .alert-info {
   border-left: 5px solid #189f8f;
-  background-color: #e6f8f7;
+  background-color: #ffffff !important;
   border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#sem-anuncios {
+  background-color: #ffffff !important;
 }
 
 .alert-info a.btn-success {
@@ -58,4 +63,47 @@ footer a:hover i {
 
 .card {
   overflow: hidden;
+}
+
+/* Estilos para o título da página */
+.display-4 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: #6c757d;
+}
+
+/* Garante que os cards usem o estilo padrão da homepage */
+.ads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 0 5%;
+  margin-bottom: 50px;
+}
+
+/* Garante que o container tenha espaçamento adequado */
+.container.my-5 {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+}
+
+/* Responsividade para título */
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 2rem;
+  }
+  
+  .lead {
+    font-size: 1rem;
+  }
+  
+  .ads-grid {
+    grid-template-columns: 1fr;
+    padding: 0 2%;
+  }
 }

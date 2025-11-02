@@ -1,176 +1,141 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("multiStepForm");
-    let currentStep = 0;
-    const steps = document.querySelectorAll(".form-step");
+    // Verifica se o usuário está logado ao carregar a página
+    const userStr = localStorage.getItem("usuarioLogado");
+    if (!userStr) {
+        alert("⚠️ Você precisa estar logado para cadastrar produtos!");
+        window.location.href = "Login.html";
+        return;
+    }
 
-    // Atualiza a barra de progresso
+    let currentStep = 1; // Começa na step 1, mas mostra a step 2 quando necessário
+    const step1 = document.getElementById("step1");
+    const step2 = document.getElementById("step2");
+    const form = document.getElementById("cadastroProdutoForm");
+    const progressBar = document.getElementById("progressBar");
+    
+    // Botões de navegação
+    const btnProximo = document.getElementById("btnProximo");
+    const btnPular = document.getElementById("btnPular");
+    const btnVoltar = document.getElementById("btnVoltar");
+    const btnPublicar = document.getElementById("btnPublicar");
+
+    // Atualiza progresso
     function updateProgress() {
-        const progressBar = document.getElementById("progressBar");
         if (progressBar) {
-            const progress = ((currentStep + 1) / steps.length) * 100;
+            const progress = currentStep === 1 ? 50 : 100;
             progressBar.style.width = `${progress}%`;
         }
     }
 
-    // Função para mostrar erro em um campo
-    function showFieldError(fieldId, message) {
-        const field = document.getElementById(fieldId);
-        if (field) {
-            field.classList.add("is-invalid");
-            // Remove mensagem anterior se existir
-            const existingError = field.parentElement.querySelector(".invalid-feedback");
-            if (existingError) {
-                existingError.remove();
-            }
-            // Adiciona nova mensagem
-            const errorDiv = document.createElement("div");
-            errorDiv.className = "invalid-feedback";
-            errorDiv.textContent = message;
-            field.parentElement.appendChild(errorDiv);
-        }
+    // Vai para próximo passo
+    function goToStep2() {
+        if (step1) step1.classList.add("d-none");
+        if (step2) step2.classList.remove("d-none");
+        currentStep = 2;
+        updateProgress();
     }
 
-    // Função para limpar erros de um campo
-    function clearFieldError(fieldId) {
-        const field = document.getElementById(fieldId);
-        if (field) {
-            field.classList.remove("is-invalid");
-            const errorDiv = field.parentElement.querySelector(".invalid-feedback");
-            if (errorDiv) {
-                errorDiv.remove();
-            }
-        }
+    // Volta para passo anterior
+    function goToStep1() {
+        if (step2) step2.classList.add("d-none");
+        if (step1) step1.classList.remove("d-none");
+        currentStep = 1;
+        updateProgress();
     }
 
-    // Validação do primeiro passo (informações pessoais) - opcional, pode pular
-    function validateFirstStep() {
-        // Como é opcional, não precisa validar
-        return true;
-    }
+    // Preview de imagem
+    const imagemUrlInput = document.getElementById("imagemUrl");
+    if (imagemUrlInput) {
+        imagemUrlInput.addEventListener("input", () => {
+            const previewContainer = document.getElementById("previewImagem");
+            if (!previewContainer) return;
 
-    // Validação do segundo passo (informações do anúncio) - obrigatório
-    function validateSecondStep() {
-        let isValid = true;
-        
-        // Limpa erros anteriores
-        clearFieldError("titulo");
-        clearFieldError("categoria");
-        clearFieldError("preco");
-        clearFieldError("descricao");
-        clearFieldError("estado");
-        clearFieldError("localizacao");
+            const url = imagemUrlInput.value.trim();
+            previewContainer.innerHTML = "";
 
-        // Valida título
-        const titulo = document.getElementById("titulo")?.value.trim();
-        if (!titulo) {
-            showFieldError("titulo", "O título do anúncio é obrigatório.");
-            isValid = false;
-        } else if (titulo.length < 3) {
-            showFieldError("titulo", "O título deve ter pelo menos 3 caracteres.");
-            isValid = false;
-        }
-
-        // Valida categoria
-        const categoria = document.getElementById("categoria")?.value;
-        if (!categoria || categoria === "") {
-            showFieldError("categoria", "Por favor, selecione uma categoria.");
-            isValid = false;
-        }
-
-        // Valida preço
-        const preco = document.getElementById("preco")?.value.trim();
-        if (!preco) {
-            showFieldError("preco", "O preço é obrigatório.");
-            isValid = false;
-        } else {
-            const precoNum = parseFloat(preco.replace(",", "."));
-            if (isNaN(precoNum) || precoNum <= 0) {
-                showFieldError("preco", "Por favor, insira um preço válido (maior que zero).");
-                isValid = false;
-            }
-        }
-
-        // Valida descrição
-        const descricao = document.getElementById("descricao")?.value.trim();
-        if (!descricao) {
-            showFieldError("descricao", "A descrição é obrigatória.");
-            isValid = false;
-        } else if (descricao.length < 10) {
-            showFieldError("descricao", "A descrição deve ter pelo menos 10 caracteres.");
-            isValid = false;
-        }
-
-        // Valida estado (não obrigatório, mas valida se tem valor)
-        const estado = document.getElementById("estado")?.value;
-        if (!estado || estado === "") {
-            // Se não tiver valor selecionado, usa "Novo" como padrão
-        }
-
-        // Valida localização
-        const localizacao = document.getElementById("localizacao")?.value.trim();
-        if (!localizacao) {
-            showFieldError("localizacao", "A localização é obrigatória.");
-            isValid = false;
-        }
-
-        return isValid;
-    }
-
-    // Botões "Próximo"
-    document.querySelectorAll(".next-step").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            // Permite passar para o próximo passo sem validar o primeiro (opcional)
-            if (currentStep < steps.length - 1) {
-                steps[currentStep].classList.add("d-none");
-                currentStep++;
-                steps[currentStep].classList.remove("d-none");
-                updateProgress();
+            if (url) {
+                previewContainer.innerHTML = `
+                    <div class="border rounded p-2 text-center">
+                        <img src="${url}" alt="Preview" class="img-thumbnail" style="max-height: 200px; max-width: 100%;" 
+                             onerror="this.onerror=null; this.src='assets/img/no-image.png';">
+                    </div>
+                `;
             }
         });
-    });
+    }
 
-    // Botões "Voltar"
-    document.querySelectorAll(".prev-step").forEach(btn => {
-        btn.addEventListener("click", () => {
-            if (currentStep > 0) {
-                steps[currentStep].classList.add("d-none");
-                currentStep--;
-                steps[currentStep].classList.remove("d-none");
-                updateProgress();
-            }
+    // Botão Próximo
+    if (btnProximo) {
+        btnProximo.addEventListener("click", () => {
+            goToStep2();
         });
-    });
+    }
+
+    // Botão Pular
+    if (btnPular) {
+        btnPular.addEventListener("click", () => {
+            goToStep2();
+        });
+    }
+
+    // Botão Voltar
+    if (btnVoltar) {
+        btnVoltar.addEventListener("click", () => {
+            goToStep1();
+        });
+    }
 
     // Submit do formulário
     if (form) {
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            console.log("=== INÍCIO DO SUBMIT ===");
-
-            // Verifica se está no segundo passo (índice 1)
-            // Se estiver no primeiro passo, avança automaticamente
-            if (currentStep === 0) {
-                steps[currentStep].classList.add("d-none");
-                currentStep = 1;
-                steps[currentStep].classList.remove("d-none");
-                updateProgress();
-            }
-            
-            // Só permite submit se estiver no segundo passo
-            if (currentStep !== 1) {
-                alert("Por favor, vá para a etapa de informações do anúncio primeiro.");
+            // Se está na step 1, vai para step 2
+            if (currentStep === 1) {
+                goToStep2();
                 return;
             }
 
-            // Valida todos os campos
-            if (!validateSecondStep()) {
-                alert("❌ Por favor, corrija os erros destacados no formulário antes de continuar.");
+            // Validações
+            const titulo = document.getElementById("titulo")?.value.trim();
+            const descricao = document.getElementById("descricao")?.value.trim();
+            const preco = document.getElementById("preco")?.value.trim();
+            const categoria = document.getElementById("categoria")?.value;
+            const localizacao = document.getElementById("localizacao")?.value.trim();
+            const imagemUrl = document.getElementById("imagemUrl")?.value.trim();
+            const estado = document.getElementById("estado")?.value || "Novo";
+
+            if (!titulo || titulo.length < 3) {
+                alert("Por favor, preencha o título (mínimo 3 caracteres).");
                 return;
             }
 
-            // Verifica se o usuário está logado
+            if (!descricao || descricao.length < 10) {
+                alert("Por favor, preencha a descrição (mínimo 10 caracteres).");
+                return;
+            }
+
+            if (!preco || parseFloat(preco) <= 0) {
+                alert("Por favor, insira um preço válido.");
+                return;
+            }
+
+            if (!categoria) {
+                alert("Por favor, selecione uma categoria.");
+                return;
+            }
+
+            if (!localizacao) {
+                alert("Por favor, preencha a localização.");
+                return;
+            }
+
+            if (!imagemUrl) {
+                alert("Por favor, insira uma URL para a imagem.");
+                return;
+            }
+
+            // Verifica se usuário está logado
             const userStr = localStorage.getItem("usuarioLogado");
             if (!userStr) {
                 alert("⚠️ Faça login para cadastrar produtos!");
@@ -188,102 +153,102 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            if (!user || !user.id) {
-                alert("Erro: Usuário não encontrado. Faça login novamente.");
+            // Pega o ID do usuário
+            const userId = user.id || user.Id || user.ID;
+            if (!userId) {
+                console.error("Usuário sem ID:", user);
+                alert("Erro: Usuário sem ID válido. Faça login novamente.");
                 window.location.href = "Login.html";
                 return;
             }
 
-            // Coleta os dados do formulário
-            const titulo = document.getElementById("titulo").value.trim();
-            const descricao = document.getElementById("descricao").value.trim();
-            const preco = document.getElementById("preco").value.trim().replace(",", ".");
-            const categoria = document.getElementById("categoria").value;
-            const estado = document.getElementById("estado").value || "Novo";
-            const localizacao = document.getElementById("localizacao").value.trim();
-
+            // Prepara os dados do produto
             const precoNum = parseFloat(preco);
-            if (isNaN(precoNum) || precoNum <= 0) {
-                alert("Por favor, insira um preço válido.");
-                return;
-            }
 
+            // Monta o produto exatamente como o C# espera
             const produto = {
-                title: titulo,
-                description: descricao,
-                price: precoNum,
-                category: categoria,
-                condition: estado,
-                location: localizacao,
-                ownerId: user.id,
-                imageUrl: "assets/img/no-image.png"
+                Title: titulo,
+                Description: descricao,
+                Price: precoNum,
+                Category: categoria,
+                Condition: estado,
+                Location: localizacao,
+                OwnerId: userId,
+                ImageUrl: imagemUrl
             };
 
-            console.log("Dados do produto a serem enviados:", produto);
-            console.log("URL da API:", `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PRODUCTS}`);
+            console.log("=== ENVIANDO PRODUTO ===");
+            console.log("Produto:", JSON.stringify(produto, null, 2));
+            console.log("User ID:", userId);
+            console.log("API URL:", `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PRODUCTS}`);
 
-            // Desabilita o botão de submit para evitar duplo envio
-            const submitBtn = form.querySelector('button[type="submit"]');
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.textContent = "Enviando...";
+            // Desabilita o botão
+            if (btnPublicar) {
+                btnPublicar.disabled = true;
+                btnPublicar.textContent = "Enviando...";
             }
 
             try {
+                // Faz o POST
                 const apiUrl = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PRODUCTS}`;
-                console.log("Fazendo requisição para:", apiUrl);
+                console.log("POST para:", apiUrl);
 
                 const response = await fetch(apiUrl, {
                     method: "POST",
-                    headers: { 
+                    headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(produto),
+                    body: JSON.stringify(produto)
                 });
 
                 console.log("Status da resposta:", response.status);
-                console.log("Headers da resposta:", [...response.headers.entries()]);
+                console.log("OK?", response.ok);
 
+                // Verifica resposta
                 if (!response.ok) {
-                    const errorText = await response.text();
-                    console.error("Erro do servidor (status " + response.status + "):", errorText);
                     let errorMessage = "Erro ao cadastrar produto";
                     try {
-                        const error = JSON.parse(errorText);
-                        errorMessage = error.message || error.title || errorMessage;
+                        const errorData = await response.json();
+                        console.error("Erro do servidor:", errorData);
+                        errorMessage = errorData.message || errorData.error || errorMessage;
                     } catch (e) {
-                        if (errorText) {
-                            errorMessage = `Erro ${response.status}: ${errorText.substring(0, 100)}`;
-                        } else {
-                            errorMessage = `Erro ${response.status}: ${response.statusText}`;
-                        }
+                        const text = await response.text();
+                        console.error("Erro (texto):", text);
+                        errorMessage = `Erro ${response.status}: ${text || response.statusText}`;
                     }
-                    throw new Error(errorMessage);
+                    
+                    alert(`❌ ${errorMessage}`);
+                    if (btnPublicar) {
+                        btnPublicar.disabled = false;
+                        btnPublicar.textContent = "Publicar Anúncio";
+                    }
+                    return;
                 }
 
+                // Sucesso!
                 const produtoCriado = await response.json();
-                console.log("✅ Produto criado com sucesso:", produtoCriado);
+                console.log("✅ Produto criado:", produtoCriado);
+                
                 alert("✅ Produto cadastrado com sucesso!");
                 window.location.href = "meusanuncios.html";
+
             } catch (err) {
-                console.error("❌ Erro completo:", err);
+                console.error("❌ Erro na requisição:", err);
                 
-                // Verifica se é erro de conexão
-                if (err.message.includes("Failed to fetch") || err.message.includes("NetworkError")) {
-                    alert("❌ Erro de conexão com o servidor!\n\nVerifique se:\n1. O backend está rodando\n2. A URL da API está correta (http://localhost:5196)\n3. Não há problemas de CORS\n\nAbra o console (F12) para mais detalhes.");
+                if (err.message && (err.message.includes("Failed to fetch") || err.message.includes("NetworkError"))) {
+                    alert("❌ Erro de conexão com o servidor!\n\nVerifique se:\n1. O backend está rodando (http://localhost:5196)\n2. A URL da API está correta\n3. Não há problemas de CORS");
                 } else {
-                    alert(`❌ Erro ao cadastrar produto:\n\n${err.message}\n\nAbra o console (F12) para mais detalhes.`);
+                    alert(`❌ Erro ao cadastrar produto: ${err.message || "Erro desconhecido"}`);
                 }
-            } finally {
-                // Reabilita o botão
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = "Publicar Anúncio";
+
+                if (btnPublicar) {
+                    btnPublicar.disabled = false;
+                    btnPublicar.textContent = "Publicar Anúncio";
                 }
             }
         });
     }
 
+    // Inicializa
     updateProgress();
 });
-

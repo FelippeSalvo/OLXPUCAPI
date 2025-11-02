@@ -16,7 +16,7 @@
     <a href="index.html" style="text-decoration: none; color: inherit;"><div class="logo">OLX PUC</div></a>
     <input type="text" placeholder="Buscar anúncio..." class="search"/>
     <div class="auth-buttons">
-      <a href= "Login.html" class="btn login">Login | Logout</a>
+      <a href="Login.html" class="btn login">Login | Logout</a>
       <a href="cadastro_usuario.html" class="btn subscribe">Cadastrar</a>
     </div>
   </header>
@@ -30,7 +30,6 @@
     </div>
   </nav>
 
-
   <div class="container my-5" id="cadastro">
     <h2 class="text-center mb-4">Cadastrar Novo Produto</h2>
   
@@ -38,135 +37,128 @@
       <div id="progressBar" class="progress-bar" role="progressbar"></div>
     </div>
   
-    <form id="multiStepForm">
-      <fieldset class="form-step border rounded p-4 bg-white shadow-sm">
-        <legend class="mb-4 fs-4" style="color: #189f8f; text-align: center;">Informações Pessoais</legend>
-  
+    <form id="cadastroProdutoForm">
+      <!-- Primeiro Passo -->
+      <div id="step1" class="form-step border rounded p-4 bg-white shadow-sm">
+        <legend class="mb-4 fs-4" style="color: #189f8f; text-align: center;">Informações Pessoais (Opcional)</legend>
+        
         <div class="mb-3">
           <label for="nome" class="form-label">Nome e Sobrenome do Anunciante</label>
-          <input type="text" class="form-control" id="nome" required>
+          <input type="text" class="form-control" id="nome">
         </div>
-  
+
         <div class="row">
           <div class="mb-3 col-md-6">
             <label for="idade" class="form-label">Idade</label>
-            <input type="number" class="form-control" id="idade" required>
+            <input type="number" class="form-control" id="idade">
           </div>
-  
+
           <div class="mb-3 col-md-6">
             <label for="curso" class="form-label">Curso</label>
-            <input type="text" class="form-control" id="curso" required>
+            <input type="text" class="form-control" id="curso">
           </div>
         </div>
 
         <div class="row">
           <div class="mb-3 col-md-6">
             <label for="email" class="form-label">E-mail</label>
-            <input type="email" class="form-control" id="email" required>
+            <input type="email" class="form-control" id="email">
           </div>
   
           <div class="mb-3 col-md-6">
             <label for="tel" class="form-label">Telefone de Contato</label>
-            <input type="tel" class="form-control" id="tel" required>
+            <input type="tel" class="form-control" id="tel">
           </div>
         </div>
   
         <div class="mb-3">
           <label for="campus" class="form-label">Campus PUC</label>
-          <input type="text" class="form-control" id="campus" required>
+          <input type="text" class="form-control" id="campus">
         </div>
   
         <div class="mb-4">
-          <label for="carteira" class="form-label">Carteira de Estudante (foto)</label>
-          <input type="file" class="form-control" id="carteira" accept="image/*" required>
+          <label for="carteira" class="form-label">Carteira de Estudante (URL - opcional)</label>
+          <input type="url" class="form-control" id="carteira" placeholder="https://exemplo.com/carteira.jpg">
         </div>
   
-        <button type="button" class="btn btn-primary w-100 next-step">Próximo</button>
+        <button type="button" class="btn btn-primary w-100" id="btnProximo">Próximo</button>
         <div class="text-center mt-3">
           <small class="text-muted">Ou </small>
-          <button type="button" class="btn btn-link btn-sm p-0" onclick="skipFirstStep()">pule esta etapa e vá direto para o anúncio</button>
+          <button type="button" class="btn btn-link btn-sm p-0" id="btnPular">pule esta etapa e vá direto para o anúncio</button>
         </div>
-        <script>
-          function skipFirstStep() {
-            const form = document.getElementById('multiStepForm');
-            if (form) {
-              const event = new Event('submit', { bubbles: true, cancelable: true });
-              form.dispatchEvent(event);
-            }
-          }
-        </script>
-      </fieldset>
+      </div>
   
-      <fieldset class="form-step d-none border rounded p-4 bg-white shadow-sm">
+      <!-- Segundo Passo -->
+      <div id="step2" class="form-step d-none border rounded p-4 bg-white shadow-sm">
         <legend class="mb-4 fs-4" style="color: #189f8f; text-align: center;">Informações do Anúncio</legend>
   
         <div class="mb-3">
-          <label for="titulo" class="form-label">Título do Anúncio</label>
+          <label for="titulo" class="form-label">Título do Anúncio *</label>
           <input type="text" class="form-control" id="titulo" required>
         </div>
   
         <div class="row">
           <div class="mb-3 col-md-6">
-            <label for="categoria" class="form-label">Categoria</label>
+            <label for="categoria" class="form-label">Categoria *</label>
             <select class="form-select" id="categoria" required>
-              <option disabled selected>Selecione uma categoria</option>
-              <option>Eletrônicos</option>
-              <option>Livros</option>
-              <option>Peça de Roupas</option>
-              <option>Objetos</option>
-              <option>Itens Acadêmicos</option>
-              <option>Serviços</option>
+              <option value="">Selecione uma categoria</option>
+              <option value="Eletrônicos">Eletrônicos</option>
+              <option value="Livros">Livros</option>
+              <option value="Peça de Roupas">Peça de Roupas</option>
+              <option value="Objetos">Objetos</option>
+              <option value="Itens Acadêmicos">Itens Acadêmicos</option>
+              <option value="Serviços">Serviços</option>
             </select>
           </div>
   
           <div class="mb-3 col-md-6">
-            <label for="preco" class="form-label">Preço (R$)</label>
-            <input type="number" class="form-control" id="preco" required>
+            <label for="preco" class="form-label">Preço (R$) *</label>
+            <input type="number" class="form-control" id="preco" step="0.01" min="0.01" required>
           </div>
         </div>
   
         <div class="mb-3">
-          <label for="descricao" class="form-label">Descrição</label>
+          <label for="descricao" class="form-label">Descrição *</label>
           <textarea class="form-control" id="descricao" rows="3" required></textarea>
         </div>
   
         <div class="mb-3">
           <label for="estado" class="form-label">Estado de Conservação</label>
           <select class="form-select" id="estado">
-            <option>Novo</option>
-            <option>Semi-novo</option>
-            <option>Usado</option>
+            <option value="Novo">Novo</option>
+            <option value="Semi-novo">Semi-novo</option>
+            <option value="Usado">Usado</option>
           </select>
         </div>
   
         <div class="mb-3">
-          <label for="localizacao" class="form-label">Localização</label>
+          <label for="localizacao" class="form-label">Localização *</label>
           <input type="text" class="form-control" id="localizacao" required>
         </div>
   
         <div class="mb-4">
-          <label for="imagens" class="form-label">Fotos do Produto</label>
-          <input type="file" class="form-control" id="imagens" multiple accept="image/*">
+          <label for="imagemUrl" class="form-label">URL da Imagem Principal *</label>
+          <input type="url" class="form-control" id="imagemUrl" placeholder="https://exemplo.com/imagem.jpg" required>
+          <small class="text-muted">Cole o link da imagem do produto</small>
+          <div id="previewImagem" class="mt-2"></div>
         </div>
   
         <div class="d-flex justify-content-between">
-          <button type="button" class="btn btn-secondary prev-step">Voltar</button>
-          <button type="submit" class="btn btn-success">Publicar Anúncio</button>
+          <button type="button" class="btn btn-secondary" id="btnVoltar">Voltar</button>
+          <button type="submit" class="btn btn-success" id="btnPublicar">Publicar Anúncio</button>
         </div>
-      </fieldset>
+      </div>
     </form>
   </div>
-
 
   <footer class="bg-dark text-light text-center p-4">
     <div class="container-fluid">
       <a class="navbar-brand logo-circle d-flex align-items-center justify-content-center" href="index.html">
         <img src="assets/img/logo.png" class="rounded-circle" alt="Logo" width="60" height="60">
       </a> 
-      <break>‎</break>
       <p class="mb-1">© 2025 OLX PUC. Todos os direitos reservados.</p>
       <p class="mb-2 small">
-        OLX PUC é uma plataforma digital independente dedicada à compra, venda e troca de produtos e serviços entre membros da comunidade acadêmica. É proibida a reprodução, distribuição ou qualquer uso não autorizado do conteúdo deste site sem consentimento prévio por escrito.
+        OLX PUC é uma plataforma digital independente dedicada à compra, venda e troca de produtos e serviços entre membros da comunidade acadêmica.
       </p>
       <div class="d-flex justify-content-center gap-3">
         <a href="#"><i class="bi bi-linkedin text-white fs-4"></i></a>
@@ -175,8 +167,10 @@
       </div>
     </div>
   </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/JS/config.js"></script>
+  <script src="assets/JS/auth-header.js"></script>
   <script src="assets/JS/cadastro-produto.js"></script>
 </body>
 </html>
