@@ -7,5 +7,7 @@ namespace OLXPUCAPI.Models
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public Role Role { get; set; } = Role.User;
+        public string? Course { get; set; }
+        public string? Phone { get; set; }
     }
 }

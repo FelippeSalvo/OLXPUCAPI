@@ -64,8 +64,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             const fotoVendedor = document.getElementById("fotoVendedor");
             const fotoPadrao = 'assets/img/pucicone.png';
             
-            if (curso) curso.textContent = "Não informado";
-            if (telefone) telefone.textContent = "Não informado";
+            if (curso) curso.textContent = "ADS";
+            if (telefone) telefone.textContent = "31 8819-8824";
             if (avaliacao) {
                 avaliacao.innerHTML = '<i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i> <small>4.0</small>';
             }
@@ -89,14 +89,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 // Função para carregar informações do vendedor
 async function carregarInformacoesVendedor(ownerId) {
     try {
+        console.log("Buscando informações do vendedor com ID:", ownerId);
         const userRes = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.USERS}/${ownerId}`);
         
         let vendedor = null;
         
         if (userRes.ok) {
             vendedor = await userRes.json();
+            console.log("Vendedor carregado da API:", vendedor);
+            console.log("Course do vendedor:", vendedor?.Course, vendedor?.course);
+            console.log("Phone do vendedor:", vendedor?.Phone, vendedor?.phone);
         } else {
-            console.warn("Não foi possível carregar informações do vendedor da API");
+            console.warn("Não foi possível carregar informações do vendedor da API. Status:", userRes.status);
         }
         
         // Tenta buscar do localStorage como fallback
@@ -109,6 +113,7 @@ async function carregarInformacoesVendedor(ownerId) {
                     // Compara como strings para garantir compatibilidade
                     if (userIdLocal && userIdLocal.toString() === ownerId.toString()) {
                         vendedor = userLocal;
+                        console.log("Usando vendedor do localStorage:", vendedor);
                     }
                 }
             } catch (e) {
@@ -171,21 +176,39 @@ async function carregarInformacoesVendedor(ownerId) {
         }
         
         // Curso - busca do campo com diferentes variações de capitalização
+        // Prioriza PascalCase do backend (Course), usa "ADS" como padrão
         if (curso) {
-            const cursoValue = vendedor?.course || vendedor?.Course || 
-                             vendedor?.curso || vendedor?.Curso || 
-                             "Não informado";
-            curso.textContent = cursoValue;
+            // Busca Course em PascalCase primeiro (do backend), depois variações
+            const cursoValue = vendedor?.Course || vendedor?.course || 
+                             vendedor?.Curso || vendedor?.curso || 
+                             null;
+            
+            if (cursoValue && cursoValue.trim() !== "") {
+                curso.textContent = cursoValue.trim();
+            } else {
+                curso.textContent = "ADS"; // Valor padrão
+            }
+            
+            console.log("Curso do vendedor:", cursoValue, "Vendedor completo:", vendedor);
         }
         
         // Telefone - busca do campo com diferentes variações
+        // Prioriza PascalCase do backend (Phone), usa "31 8819-8824" como padrão
         if (telefone) {
-            const telefoneValue = vendedor?.phone || vendedor?.Phone || 
-                                vendedor?.telephone || vendedor?.Telephone || 
-                                vendedor?.contact || vendedor?.Contact ||
-                                vendedor?.telefone || vendedor?.Telefone ||
-                                "Não informado";
-            telefone.textContent = telefoneValue;
+            // Busca Phone em PascalCase primeiro (do backend), depois variações
+            const telefoneValue = vendedor?.Phone || vendedor?.phone || 
+                                vendedor?.Telephone || vendedor?.telephone || 
+                                vendedor?.Contact || vendedor?.contact ||
+                                vendedor?.Telefone || vendedor?.telefone ||
+                                null;
+            
+            if (telefoneValue && telefoneValue.trim() !== "") {
+                telefone.textContent = telefoneValue.trim();
+            } else {
+                telefone.textContent = "31 8819-8824"; // Valor padrão
+            }
+            
+            console.log("Telefone do vendedor:", telefoneValue, "Vendedor completo:", vendedor);
         }
         
     } catch (err) {

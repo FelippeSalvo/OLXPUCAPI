@@ -4,5 +4,11 @@
     "UserId": "7abaea51-f9c9-42c7-a355-a767d7bf85c8",
     "ProductId": "f2a39e4c-06df-4e5b-9c32-d16f3bfa8a11",
     "Quantity": 1
+  },
+  {
+    "Id": "12a25105-4b8b-41c5-a316-43c6b4d5daf1",
+    "UserId": "7abaea51-f9c9-42c7-a355-a767d7bf85c8",
+    "ProductId": "192092af-4294-4b39-8f8a-4f7f36d1ffc1",
+    "Quantity": 1
   }
 ]

@@ -33,10 +33,16 @@ namespace OLXPCAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(Guid id, [FromBody] User user)
         {
-            if (id != user.Id) return BadRequest();
+            if (id != user.Id) return BadRequest(new { message = "ID do usuário não corresponde" });
+            
             var updated = _userService.Update(user);
-            if (!updated) return NotFound();
-            return Ok(user);
+            if (!updated) return NotFound(new { message = "Usuário não encontrado" });
+            
+            // Retorna o usuário atualizado do repositório para garantir que todos os campos estão corretos
+            var updatedUser = _userService.GetById(id);
+            if (updatedUser == null) return NotFound(new { message = "Usuário não encontrado após atualização" });
+            
+            return Ok(updatedUser);
         }
 
         [HttpDelete("{id}")]
