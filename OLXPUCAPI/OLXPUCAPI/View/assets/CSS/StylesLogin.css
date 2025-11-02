@@ -1,0 +1,79 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url(https://diariodocomercio.com.br/wp-content/uploads/2018/12/PUC-Minas.jpg);
+    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.user_card {
+    width: 360px;
+    margin: auto;
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.brand_logo_container {
+    height: 120px;
+    width: 120px;
+    margin: auto;
+    border-radius: 50%;
+    background: #189f8f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    margin-top: -80px;
+}
+
+.brand_logo {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+.login_btn {
+    width: 100%;
+    background: #27ae60 !important;
+    border: none;
+    color: white !important;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.login_btn:hover {
+    background: #189f8f !important;
+}
+
+.input-group-text {
+    background: #189f8f;
+    color: white;
+    border: 0;
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.input_user,
+.input_pass:focus {
+    box-shadow: none;
+    outline: 0;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #189f8f;
+} 
+
+.erro {
+  color: white;
+  background-color: #e74c3c;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: none;
+  max-width: 300px;
+}

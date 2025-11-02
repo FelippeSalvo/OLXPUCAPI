@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OLX PUC - Meus Anúncios</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/CSS/stylesHomepage.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="assets/CSS/meusanuncios.css" />
+</head>
+<body class="bg-light">
+
+  <header class="topbar">
+    <div class="logo">OLX PUC</div>
+    <input type="text" placeholder="Buscar anúncio..." class="search"/>
+     <div class="auth-buttons">
+      <a href= "Login.html" class="btn login">Login | Logout</a>
+      <a href="cadastro_usuario.html" class="btn subscribe">Cadastrar</a>
+    </div>
+  </header>
+
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="meusanuncios.html">Meus Anúncios</a>
+    <a href="notificacoes.html">Notificações</a>
+    <div class="icons">
+      <a href="carrinho.html"><button><i class="fas fa-shopping-cart"></i> Carrinho</button></a>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+    <div class="alert alert-info text-center shadow-sm p-5">
+      <i class="bi bi-info-circle fs-1 text-primary mb-3"></i>
+      <h4 class="mb-3">Você ainda não possui anúncios cadastrados.</h4>
+      <p>Comece agora mesmo clicando no botão abaixo para criar seu primeiro anúncio!</p>
+      <a href="cadastro.html" class="btn btn-success btn-lg mt-3">
+        <i class="bi bi-plus-circle me-2"></i> Cadastrar Novo Anúncio
+      </a>
+    </div>
+  </div>
+
+  <footer class="bg-dark text-light text-center p-4">
+    <div class="container-fluid">
+      <a class="navbar-brand logo-circle d-flex align-items-center justify-content-center" href="index.html">
+        <img src="assets/img/logo.png" class="rounded-circle" alt="Logo" width="60" height="60">
+      </a> 
+      <break>‎</break>
+      <p class="mb-1">© 2025 OLX PUC. Todos os direitos reservados.</p>
+      <p class="mb-2 small">
+        OLX PUC é uma plataforma digital independente dedicada à compra, venda e troca de produtos e serviços entre membros da comunidade acadêmica. É proibida a reprodução, distribuição ou qualquer uso não autorizado do conteúdo deste site sem consentimento prévio por escrito.
+      </p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="#"><i class="bi bi-linkedin text-white fs-4"></i></a>
+        <a href="#"><i class="bi bi-instagram text-white fs-4"></i></a>
+        <a href="#"><i class="bi bi-facebook text-white fs-4"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/JS/config.js"></script>
+  <script>
+    // Carregar anúncios do usuário logado
+    document.addEventListener("DOMContentLoaded", async () => {
+      const userStr = localStorage.getItem("usuarioLogado");
+      if (!userStr) {
+        return; // Mantém a mensagem padrão
+      }
+
+      const user = JSON.parse(userStr);
+      if (!user || !user.id) {
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.PRODUCTS}/owner/${user.id}`);
+        if (!response.ok) return;
+
+        const produtos = await response.json();
+        if (!produtos || produtos.length === 0) {
+          return; // Mantém a mensagem padrão
+        }
+
+        // Se houver produtos, substitui a mensagem por uma lista
+        const container = document.querySelector(".container.my-5");
+        if (container) {
+          container.innerHTML = `
+            <h2 class="mb-4">Meus Anúncios</h2>
+            <div class="row" id="meus-anuncios">
+              ${produtos.map(p => `
+                <div class="col-md-4 mb-4">
+                  <div class="card h-100">
+                    <img src="${p.imageUrl || 'assets/img/no-image.png'}" class="card-img-top" alt="${p.title}">
+                    <div class="card-body">
+                      <h5 class="card-title">${p.title}</h5>
+                      <p class="card-text">R$ ${(p.price || 0).toFixed(2)}</p>
+                      <a href="detalhes.html?id=${p.id}" class="btn btn-primary">Ver detalhes</a>
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+            <div class="text-center mt-4">
+              <a href="cadastro.html" class="btn btn-success">
+                <i class="bi bi-plus-circle me-2"></i> Cadastrar Novo Anúncio
+              </a>
+            </div>
+          `;
+        }
+      } catch (err) {
+        console.error("Erro ao carregar anúncios:", err);
+      }
+    });
+  </script>
+</body>
+</html>

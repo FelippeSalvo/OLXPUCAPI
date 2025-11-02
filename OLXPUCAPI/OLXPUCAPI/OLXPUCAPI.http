@@ -1,0 +1,6 @@
+@OLXPUCAPI_HostAddress = http://localhost:5196
+
+GET {{OLXPUCAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

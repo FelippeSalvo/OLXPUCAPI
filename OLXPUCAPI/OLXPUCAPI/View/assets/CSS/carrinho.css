@@ -1,0 +1,252 @@
+body {
+    background: #f8f9fa;
+    font-family: 'Poppins', sans-serif;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+.card-body {
+    padding: 0 !important;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.card-top {
+    background-color: #189f8f;
+    color: white;
+    font-weight: 500;
+    border-bottom: none;
+    padding: 1rem 1.5rem;
+}
+
+.produtos {
+    padding: 15px;
+    transition: background-color 0.2s ease;
+    border-radius: 8px;
+}
+
+.produtos:hover {
+    background-color: rgba(24, 159, 143, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.preco {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.btn-voltar {
+    border: 2px solid #189f8f;
+    color: #189f8f;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background-color: transparent;
+}
+
+.btn-voltar:hover {
+    background-color: #189f8f;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(24, 159, 143, 0.2);
+}
+
+.btn-limpar {
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+}
+.btn-limpar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+}
+
+.btn-primary,
+.btn-success {
+    background-color: #189f8f;
+    border-color: #189f8f;
+}
+
+.btn-success {
+    background-color: #27ae60;
+    border-color: #27ae60;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(24, 159, 143, 0.3);
+}
+
+.btn-checkout {
+    background: linear-gradient(135deg, #189f8f, #148f80);
+    border: none;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    padding: 12px;
+}
+
+.btn-checkout:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(24, 159, 143, 0.3);
+}
+
+.quantity-controls input {
+    text-align: center;
+    font-weight: 600;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    height: 40px;
+}
+
+.quantity-controls .btn {
+    border: 2px solid #189f8f;
+    color: #189f8f;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.quantity-controls .btn:hover {
+    background-color: white;
+    color: white;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.quantidade {
+    color: #148f80;
+}
+
+.quantity-controls button {
+    width: 40px;
+    border-radius: 6px !important;
+}
+
+.card-body img {
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    object-fit: cover;
+}
+
+.card-body img:hover {
+    transform: scale(1.03);
+}
+
+/* Resumo do Pedido */
+.sumario-card {
+    border-radius: 12px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.sumario-card .card-header {
+    background-color: #189f8f;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.sumario-lista {
+    border-radius: 0 0 12px 12px;
+}
+
+.sumario-lista .list-group-item {
+    padding: 1rem 1.5rem;
+    border-left: none;
+    border-right: none;
+}
+
+.sumario-lista .list-group-item:last-child {
+    border-bottom: none;
+}
+
+.total-item {
+    background-color: rgba(24, 159, 143, 0.08);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Informações do Vendedor */
+.info-vendedor {
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.info-vendedor h6 {
+    color: #189f8f;
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.info-vendedor img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border: 2px solid #189f8f;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vendedor-stats {
+    font-size: 0.95rem;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.vendedor-stats .fw-bold {
+    color: #189f8f;
+}
+
+@media (max-width: 768px) {
+    .product-item {
+        flex-direction: column;
+    }
+
+    .btn-voltar,
+    .btn-danger {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .d-flex.justify-content-between {
+        flex-direction: column;
+    }
+}
+
+.quantity-controls {
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.card-header h5 {
+    font-size: 1.2rem;
+}
+
+.sumario-card,
+.info-vendedor {
+    margin-top: 1.5rem;
+}

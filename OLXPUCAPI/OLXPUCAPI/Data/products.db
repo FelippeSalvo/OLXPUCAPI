@@ -1,0 +1,35 @@
+[
+  {
+    "Id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "Title": "string",
+    "Description": "string",
+    "Price": 1,
+    "ImageUrl": "https://cdn.pixabay.com/photo/2022/09/27/19/46/ai-generated-7483596_960_720.jpg",
+    "OwnerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "Category": "string",
+    "Condition": "string",
+    "Location": "string"
+  },
+  {
+    "Id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "Title": "string",
+    "Description": "string",
+    "Price": 1,
+    "ImageUrl": "https://imagenes.20minutos.es/uploads/imagenes/2024/05/15/una-imagen-creada-por-la-herramienta-imagen-3-de-google-1.jpeg",
+    "OwnerId": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+    "Category": "string",
+    "Condition": "string",
+    "Location": "string"
+  },
+  {
+    "Id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+    "Title": "string",
+    "Description": "string",
+    "Price": 1,
+    "ImageUrl": "https://tse1.explicit.bing.net/th/id/OIP.b23eJAgHzPLQzEKP7J9sxQHaEK?rs=1\u0026pid=ImgDetMain\u0026o=7\u0026rm=3",
+    "OwnerId": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+    "Category": "string",
+    "Condition": "string",
+    "Location": "string"
+  }
+]

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro - OLX PUC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <link rel="stylesheet" href="assets/CSS/StylesLogin.css">
+</head>
+<body>
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card">
+                <div class="d-flex justify-content-center">
+                    <div class="brand_logo_container">
+                        <a href="index.html">
+                           <img src="https://play-lh.googleusercontent.com/FlofO5QBo1Z8VPwvpMuyrAb1C3X1RRqANGRP-UWSBsYDb-hlJG49iE0ac4M-JVJwSzQ" class="brand_logo" alt="Logo OLX PUC">
+                        </a>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center form_container">
+                    <form>
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" id="nome" class="form-control input_user" placeholder="Nome completo">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            <input type="email" class="form-control input_user" id="email" placeholder="Email Institucional">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
+                            </div>
+                            <input type="text" class="form-control input_user" id="usuario" placeholder="Nome de usuário">
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control input_pass" id="senha" placeholder="Senha">
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control input_pass" id="confirmarSenha" placeholder="Confirmar senha">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                            </div>
+                            <select class="form-control" id="tipoConta">
+                                <option value="" disabled selected>Selecione o tipo de conta</option>
+                                <option value="Comprador">Comprador</option>
+                                <option value="Vendedor">Vendedor</option>
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                             <div id="cadastroErro" class="alert alert-danger text-center p-1" style="display: none;"></div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <button type="button" class="btn login_btn" id="botaoCadastro">Criar conta</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="mt-4">
+                    <div class="d-flex justify-content-center links">
+                        Já tem uma conta? <a href="Login.html" class="ml-2">Entrar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="assets/JS/config.js"></script>
+    <script src="assets/JS/cadastro.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+[
+  {
+    "Id": "7abaea51-f9c9-42c7-a355-a767d7bf85c8",
+    "Name": "string",
+    "Email": "string",
+    "Password": "string",
+    "Role": 0
+  },
+  {
+    "Id": "474e006e-8474-4195-a9bc-6dfe2a7fa974",
+    "Name": "string",
+    "Email": "string@2",
+    "Password": "string",
+    "Role": 0
+  }
+]

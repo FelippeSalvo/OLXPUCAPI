@@ -1,0 +1,19 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+  max-width: 600px;
+  margin: auto;
+  border-radius: 15px;
+}
+  .btn-custom {
+    background-color: #189f8f;
+    border-color: #189f8f;
+    color: white; /* garante contraste */
+  }
+
+  .btn-custom:hover {
+    background-color: #148678; /* cor um pouco mais escura ao passar o mouse */
+    border-color: #148678;
+  }

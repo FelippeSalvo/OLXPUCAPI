@@ -1,0 +1,95 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+               Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.notification-box {
+  max-width: 500px;
+  margin: 1rem auto;
+  background-color: #ffffff;
+  border-left: 5px solid #189f8f;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.5rem;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  animation: fadeInSlideUp 0.6s ease forwards;
+}
+
+.notification-box:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+.icon-empty {
+  color: #189f8f;
+  opacity: 0.7;
+  font-size: 1.5rem;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  animation: pulse 2.5s infinite ease-in-out;
+}
+
+.notification-box h4 {
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  color: #189f8f;
+  animation: fadeIn 1s ease forwards;
+}
+
+.notification-box p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #555;
+  margin: 0;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+@media (max-width: 600px) {
+  .notification-box {
+    max-width: 90%;
+    padding: 1rem;
+  }
+  .notification-box h4 {
+    font-size: 1.1rem;
+  }
+  .notification-box p {
+    font-size: 0.9rem;
+  }
+}
+
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
