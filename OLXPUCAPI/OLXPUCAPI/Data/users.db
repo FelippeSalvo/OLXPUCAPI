@@ -12,5 +12,12 @@
     "Email": "string@2",
     "Password": "string",
     "Role": 0
+  },
+  {
+    "Id": "87d5fe70-a4de-4459-b7ed-0237af284f83",
+    "Name": "Demo",
+    "Email": "Demo@2",
+    "Password": "123",
+    "Role": 0
   }
 ]

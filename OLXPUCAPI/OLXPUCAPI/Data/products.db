@@ -1,35 +1,101 @@
 [
   {
-    "Id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "Title": "string",
-    "Description": "string",
-    "Price": 1,
-    "ImageUrl": "https://cdn.pixabay.com/photo/2022/09/27/19/46/ai-generated-7483596_960_720.jpg",
-    "OwnerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "Category": "string",
-    "Condition": "string",
-    "Location": "string"
-  },
-  {
-    "Id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "Title": "string",
-    "Description": "string",
-    "Price": 1,
-    "ImageUrl": "https://imagenes.20minutos.es/uploads/imagenes/2024/05/15/una-imagen-creada-por-la-herramienta-imagen-3-de-google-1.jpeg",
-    "OwnerId": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
-    "Category": "string",
-    "Condition": "string",
-    "Location": "string"
-  },
-  {
-    "Id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
-    "Title": "string",
-    "Description": "string",
-    "Price": 1,
-    "ImageUrl": "https://tse1.explicit.bing.net/th/id/OIP.b23eJAgHzPLQzEKP7J9sxQHaEK?rs=1\u0026pid=ImgDetMain\u0026o=7\u0026rm=3",
-    "OwnerId": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
-    "Category": "string",
-    "Condition": "string",
-    "Location": "string"
-  }
+  "Id": "6b22eafe-2b01-46b5-8c6e-4a5e92f8c021",
+  "Title": "Notebook Gamer Acer Nitro 5",
+  "Description": "Notebook com processador i5, 16GB RAM e RTX 3050. Ideal para jogos e produtividade.",
+  "Price": 5999.90,
+  "ImageUrl": "https://m.magazineluiza.com.br/a-static/420x420/notebook-acer-nitro-v15-anv155157ws-intel-core-i5-13420h-15-6-fhd-rtx3050-512gb-ssd-8gb-ram-linux-e-ubook-kit-livros-digitais-geek/mobstore/330202/1e0cd137f77197432fc016bcbc2cc743.jpeg",
+  "OwnerId": "a13bafc9-7f1a-4b30-bd4c-4c761b83cb01",
+  "Category": "Eletrônicos",
+  "Condition": "Usado",
+  "Location": "PUC Minas Coração Eucarístico"
+},
+{
+  "Id": "cfb8b75d-85cc-4e3d-a9b3-5f64a25ed7b2",
+  "Title": "Smartphone Samsung Galaxy S23",
+  "Description": "Celular topo de linha com excelente câmera e desempenho.",
+  "Price": 4299.00,
+  "ImageUrl": "https://tse1.mm.bing.net/th/id/OIP.2qba18tvUPY6qYQFwYOuewHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+  "OwnerId": "5b761f64-b671-4b02-90ad-4a6e8d82cc03",
+  "Category": "Celulares",
+  "Condition": "Novo",
+  "Location": "PUC Minas São Gabriel"
+},
+{
+  "Id": "a74ef3d3-3d25-4583-99f3-8d21dcda1cb4",
+  "Title": "Cadeira Gamer ThunderX3",
+  "Description": "Cadeira ergonômica com ajuste de altura e apoio lombar.",
+  "Price": 999.90,
+  "ImageUrl": "https://www.bing.com/th?id=OPHS.0oK1bZ1%2fR0CHSQ474C474&o=5&pid=21.1&w=140&h=200&qlt=100&dpr=1&o=2&pcl=f5f5f5",
+  "OwnerId": "97d5b1b0-14de-4931-b64d-bba9f0e3b70d",
+  "Category": "Móveis",
+  "Condition": "Novo",
+  "Location": "PUC Minas Contagem"
+},
+{
+  "Id": "ab57b35c-7e56-4634-b730-786fd2e7f6d3",
+  "Title": "Violão Acústico Yamaha F310",
+  "Description": "Som limpo e acabamento de alta qualidade. Perfeito para iniciantes.",
+  "Price": 699.00,
+  "ImageUrl": "https://tse1.mm.bing.net/th/id/OIP.E_ky2zTgLpdR-NW8r-eZtgHaNK?rs=1&pid=ImgDetMain&o=7&rm=3",
+  "OwnerId": "7f9b2a5d-79f4-45e0-9015-39f5deea41b7",
+  "Category": "Instrumentos Musicais",
+  "Condition": "Usado",
+  "Location": "PUC Minas Barreiro"
+},
+{
+  "Id": "7a3b9c8f-8452-40e0-8041-7ef83fd3c5c8",
+  "Title": "Bicicleta Caloi Vulcan Aro 29",
+  "Description": "Bicicleta de montanha com 21 marchas e quadro de alumínio.",
+  "Price": 1299.00,
+  "ImageUrl": "https://catalog.livelo.com.br/IFA%2FPRD343746%2FSKU354062%2FLARGE%2F20168404%2FBicicleta-Caloi-Vulcan-Freio-a-Disco-Mec%C3%A2nico-Branca-Aro-29-21V-TMR29V21-Branco.jpg",
+  "OwnerId": "0ef1a6cc-b90c-458a-8268-3ce6e33a7b89",
+  "Category": "Esportes",
+  "Condition": "Usado",
+  "Location": "PUC Minas Betim"
+},
+{
+  "Id": "cd18a76d-ec4d-469b-9de2-0c5d7e89394a",
+  "Title": "Monitor LG Ultrawide 29''",
+  "Description": "Monitor ultrawide 29 polegadas, ideal para produtividade e multitarefa.",
+  "Price": 1299.90,
+  "ImageUrl": "https://http2.mlstatic.com/D_NQ_NP_2X_673178-MLA95693493312_102025-F.webp",
+  "OwnerId": "f16a9dc4-b2a7-4dcb-b4f7-fcd61c0c4b1e",
+  "Category": "Eletrônicos",
+  "Condition": "Novo",
+  "Location": "PUC Minas Praça da Liberdade"
+},
+{
+  "Id": "18fdff13-33f8-4d71-94d8-93e0e57f6489",
+  "Title": "Tênis Nike Air Max",
+  "Description": "Tênis esportivo confortável e estiloso, ótimo para o dia a dia.",
+  "Price": 499.99,
+  "ImageUrl": "https://imgnike-a.akamaihd.net/360x360/007676IEA12.jpg",
+  "OwnerId": "c13b0cb5-923d-4a78-95b3-76a7c84a1b20",
+  "Category": "Moda",
+  "Condition": "Novo",
+  "Location": "PUC Minas Coração Eucarístico"
+},
+{
+  "Id": "d8e1c6a5-9a11-49bb-9945-f2c97023a9a9",
+  "Title": "Livro 'Clean Code' - Robert C. Martin",
+  "Description": "Livro essencial para desenvolvedores que desejam escrever código limpo e eficiente.",
+  "Price": 149.00,
+  "ImageUrl": "https://ebornbooks.com/wp-content/uploads/2022/10/20221025_125116.jpg",
+  "OwnerId": "f4e1cb9b-bebf-4e9a-8dc8-5f1a93b6b9e1",
+  "Category": "Livros",
+  "Condition": "Novo",
+  "Location": "PUC Minas São Gabriel"
+},
+{
+  "Id": "6e65d357-86c2-4c79-8f47-f9f36c2ff6b5",
+  "Title": "Cafeteira Nespresso Essenza Mini",
+  "Description": "Prepare cafés deliciosos com praticidade e estilo.",
+  "Price": 599.00,
+  "ImageUrl": "https://http2.mlstatic.com/D_NQ_NP_2X_632962-MLA95698003304_102025-F.webp",
+  "OwnerId": "b2a2cc25-3a91-44ff-a8e0-b0289a889d11",
+  "Category": "Eletrodomésticos",
+  "Condition": "Novo",
+  "Location": "PUC Minas Contagem"
+}
 ]
