@@ -36,7 +36,13 @@ namespace OLXPUCAPI.Repositories
         {
             lock (_lock)
             {
-                var json = JsonSerializer.Serialize(items, new JsonSerializerOptions { WriteIndented = true });
+                var options = new JsonSerializerOptions 
+                { 
+                    WriteIndented = true,
+                    PropertyNamingPolicy = null, // Mantém PascalCase
+                    DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.Never // Inclui propriedades null
+                };
+                var json = JsonSerializer.Serialize(items, options);
                 File.WriteAllText(_filePath, json);
             }
         }
@@ -62,8 +68,16 @@ namespace OLXPUCAPI.Repositories
             var index = items.FindIndex(x => x.Id == item.Id);
             if (index != -1)
             {
+                // Substitui completamente o item para garantir que todos os campos sejam atualizados
                 items[index] = item;
                 SaveAll(items);
+                
+                // Verifica se foi salvo corretamente (debug)
+                var verificacao = GetById(item.Id);
+                if (verificacao != null)
+                {
+                    System.Diagnostics.Debug.WriteLine($"JsonRepository.Update: Item {item.Id} atualizado e verificado");
+                }
             }
         }
 

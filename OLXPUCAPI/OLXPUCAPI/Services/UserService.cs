@@ -55,8 +55,27 @@ namespace OLXPUCAPI.Services
             var existing = _repo.GetById(user.Id);
             if (existing == null) return false;
 
+            // Preserva Password se não for fornecido ou estiver vazio na atualização
+            if (string.IsNullOrWhiteSpace(user.Password) && !string.IsNullOrWhiteSpace(existing.Password))
+            {
+                user.Password = existing.Password;
+            }
+
+            // Course e Phone podem ser null (limpar) ou ter valores (atualizar)
+            // Se forem null, mantém null (limpa o campo)
+            // Se tiverem valor, atualiza com o novo valor
+            // Isso permite tanto atualizar quanto limpar esses campos opcionais
+            
+            // Log para debug (pode remover em produção)
+            System.Diagnostics.Debug.WriteLine($"Atualizando usuário {user.Id}: Course={user.Course}, Phone={user.Phone}");
+
             // keep same Id, just replace fields
             _repo.Update(user);
+            
+            // Verifica se foi salvo corretamente
+            var verificacao = _repo.GetById(user.Id);
+            System.Diagnostics.Debug.WriteLine($"Verificação após salvar: Course={verificacao?.Course}, Phone={verificacao?.Phone}");
+            
             return true;
         }
 

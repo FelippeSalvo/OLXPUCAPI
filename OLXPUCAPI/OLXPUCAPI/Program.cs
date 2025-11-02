@@ -6,7 +6,14 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // --- Configuração básica ---
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        // Configura JSON para manter PascalCase (compatível com o modelo C#)
+        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+        // Inclui propriedades null na serialização
+        options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.Never;
+    });
 builder.Services.AddEndpointsApiExplorer();
 
 // --- Swagger ---
